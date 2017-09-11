@@ -1,0 +1,40 @@
+<panel>
+  <row>
+    <input-group width="3" label="Nome da torre" help="Pesquise pelo nome da torre" [(ngModel)]="filtro.nome" (ngModelChange)="pesquisar()" id="nome"></input-group>
+
+    <select-group width="3" label="Status" help="Pesquise pelo status" [(ngModel)]="filtro.ativo" (ngModelChange)="pesquisar()"
+      [options]="itensStatus"></select-group>
+
+    <col-sm-2>
+      <botao-pesquisar (click)="pesquisar()"></botao-pesquisar>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-limpar-pesquisa (click)="limpar()"></botao-limpar-pesquisa>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-novo (click)="novo()"></botao-novo>
+    </col-sm-2>
+  </row>
+
+  <row>
+    <col-sm-12>
+
+      <dt-data-table #dt [total]="dados?.total" [data]="dados?.lista" [paginated]="true" (onPaginate)="paginacao($event)" keyEvents="true">
+        <column width="8" field="nome" header="Nome da torre"></column>
+        <column width="2" field="ativo" header="Ativo"></column>
+
+        <column width="2" useTemplate="true" alignment="center">
+
+          <ng-template let-torre="data" let-index="index">
+            <botao-grid-alterar (click)="editar(torre)"></botao-grid-alterar>
+            <botao-grid-excluir (click)="excluir(torre)"></botao-grid-excluir>
+          </ng-template>
+
+        </column>
+      </dt-data-table>
+
+    </col-sm-12>
+  </row>
+</panel>

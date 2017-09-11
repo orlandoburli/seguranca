@@ -1,0 +1,55 @@
+<div class="table-responsive ">
+  <table class="table table-striped table-advance table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let coluna of colunas" class="col-sm-{{ coluna.width }} {{ coluna.getAlingmentString( coluna.alignmentHeader )}}">{{ coluna.header }}</th>
+      </tr>
+    </thead>
+
+    <!-- Solucao original -->
+    <!--
+    <tr *ngFor="let item of data; let i = index" [ngClass]="{'linha-selecionada': i == selectedRow}" (click)="selectedRow = i">
+      <td *ngFor="let coluna of colunas">{{ resolveFieldValue( item, coluna.field ) }}</td>
+    </tr>
+    -->
+
+    <tbody>
+      <ng-template ngFor let-item="$implicit" let-i="index" [ngForOf]="data">
+
+        <tr [ngClass]="{'linha-selecionada': i == selectedRow}" (click)="selectedRow = i">
+
+          <ng-template ngFor let-coluna="$implicit" [ngForOf]="colunas">
+
+            <!-- Coluna padrão - sem template -->
+            <td class=" {{ coluna.getAlingmentString( coluna.alignment ) }}" *ngIf="!coluna.useTemplate">{{ resolveFieldValue( item, coluna.field ) }}</td>
+
+            <!-- Coluna com template -->
+            <td class=" {{ coluna.getAlingmentString( coluna.alignment ) }}" *ngIf="coluna.useTemplate">
+              <column-template [column]="coluna" [data]="item" [index]="index"></column-template>
+            </td>
+
+          </ng-template>
+
+        </tr>
+
+      </ng-template>
+    </tbody>
+
+  </table>
+</div>
+
+<col-sm-4>
+  <div class="m-grid">
+    <div class="m-grid-row">
+      <div class="m-grid-col m-grid-col-middle m-grid-col-left">
+        Página {{ currentPage }} de {{ totalPages }} - {{ totalRecords }} registros encontrados.
+      </div>
+      <div class="m-grid-col m-grid-col-middle m-grid-col-right">
+        <paginator [totalItens]="totalPages" (onPageChange)="paginatorChange($event)"></paginator>
+      </div>
+    </div>
+  </div>
+</col-sm-4>
+<col-sm-8>
+  <ng-content select="buttons-right"></ng-content>
+</col-sm-8>

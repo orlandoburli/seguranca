@@ -1,0 +1,24 @@
+<panel>
+  <row>
+    <input-group width="6" label="Nome do bloco" help="Informe o nome do bloco" [(ngModel)]="vo.nome" id="nome" [disabled]="isExcluir()"></input-group>
+
+    <select-group width="6" label="Status" help="Informe o status" [(ngModel)]="vo.ativo" [options]="itensStatus" id="ativo" [disabled]="isExcluir()"></select-group>
+
+  </row>
+
+  <row>
+    <col-sm-8></col-sm-8>
+
+    <col-sm-2 *ngIf="!isExcluir()">
+      <botao-salvar (click)="salvar()"></botao-salvar>
+    </col-sm-2>
+
+    <col-sm-2 *ngIf="isExcluir()">
+      <botao-excluir (click)="excluir()"></botao-excluir>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-voltar (click)="voltar()"></botao-voltar>
+    </col-sm-2>
+  </row>
+</panel>

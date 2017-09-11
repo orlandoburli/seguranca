@@ -1,0 +1,103 @@
+<form-cadastro>
+    <campos>
+
+    	<div class="modal fade" tabindex="-1" role="dialog" id="modalCamera">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Tirar foto</h4>
+					</div>
+					<div class="modal-body">
+						<webcam on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" class="" channel="myChannel" ng-show="!fotoTirada"></webcam>
+						<!-- <img ng-src="{{fotoTemp}}" ng-show="fotoTirada"> -->
+						<canvas id="snapshot" ng-show="fotoTirada"></canvas>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" ng-click="tirarFoto()" ng-show="!fotoTirada">Tirar foto</button>
+						<button type="button" class="btn btn-primary" ng-click="tirarNovaFoto()" ng-show="fotoTirada">Tirar nova foto</button>
+						<button type="button" class="btn btn-primary" ng-click="usarEstaFoto()" ng-show="fotoTirada">Usar esta foto</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+
+        <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="Dados Gerais">
+				<h4><strong>Dados Gerais de {{vo.nome | uppercase}}</strong></h4>
+				<hr />
+
+				<row>
+					<div class="col-md-8">
+						<row>
+					    	<input-cadastro class="col-md-12" label="Nome" placeholder="Nome da Pessoa" required field-model="vo.nome" ng-disabled="disabled" ng-maxlength="100"></input-cadastro>
+					    </row>
+					    <row>
+					    	<select-cadastro class="col-md-8" label="Tipo de Pessoa" field-model="vo.tipoPessoa" ng-disabled="disabled" required empty="[Informe o tipo de pessoa]" values="tiposPessoa" my-options="tipo as tipo.nome for tipo in values track by tipo.id"></select-cadastro>
+					    </row>
+					    
+					    <h4><strong>Documentos</strong></h4>
+						<hr />
+
+						<row>
+							<input-cadastro class="col-md-8" label="RG" placeholder="RG" field-model="vo.rg" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+
+							<input-cadastro class="col-md-4" label="Órgão/RG" placeholder="Órgão de emissão do RG" field-model="vo.orgaoRg" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+						</row>
+						<row>
+							<input-cadastro class="col-md-6" label="CPF" placeholder="CPF" field-model="vo.cpf" ng-disabled="disabled" cpf></input-cadastro>
+
+							<input-cadastro class="col-md-6" label="CNH / Motorista" placeholder="Número da carteira de motorista" field-model="vo.cnh" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+						</row>
+
+					</div>
+					<div class="col-md-4">
+						<row>
+							<img ng-src="{{vo.foto}}" class="img-thumbnail img-responsive"/>
+						</row>
+
+						<row style="padding-top: 10px">
+							<button type="button" class="btn btn-block purple-seance" data-toggle="modal" data-target="#modalCamera">Tirar foto</button>
+						</row>
+					</div>
+				</row>
+
+				<h4><strong>Contato </strong></h4>
+				<hr />
+				
+				<row>
+					<input-cadastro class="col-md-6" label="Celular 1" placeholder="Celular (com DDD)" field-model="vo.celular1" ng-disabled="disabled" phone></input-cadastro>
+					<input-cadastro class="col-md-6" label="Celular 2" placeholder="Celular (com DDD)" field-model="vo.celular2" ng-disabled="disabled" phone></input-cadastro>
+				</row>
+
+				<row>
+					<input-cadastro class="col-md-6" label="Fone Fixo 1" placeholder="Telefone Fixo (com DDD)" field-model="vo.fone1" ng-disabled="disabled" phone></input-cadastro>
+					<input-cadastro class="col-md-6" label="Fone Fixo 2" placeholder="Telefone Fixo (com DDD)" field-model="vo.fone2" ng-disabled="disabled" phone></input-cadastro>
+				</row>
+
+            </uib-tab>
+            <uib-tab index="1" heading="Endereço">
+            	<h4><strong>Endereço de {{vo.nome | uppercase}}</strong></h4>
+				<hr />
+
+				<input-cadastro class="col-md-2" label="CEP" placeholder="CEP do Endereço" field-model="vo.cep" ng-disabled="disabled" cep btn-class="fa fa-search blue" btn-click="buscarCep()"></input-cadastro>
+				
+				<input-cadastro class="col-md-10" label="Endereço" placeholder="Endereço (Rua, Avenida, Número)" field-model="vo.endereco" ng-disabled="disabled"></input-cadastro>
+				
+				<input-cadastro class="col-md-6" label="Bairro" placeholder="Nome do Bairro" field-model="vo.bairro" ng-disabled="disabled"></input-cadastro>
+				<input-cadastro class="col-md-6" label="Complemento" placeholder="Complemento do Endereço (Etapa, Setor, Apartamento, Bloco, etc)" field-model="vo.complemento" ng-disabled="
+				disabled"></input-cadastro>
+
+				<input-cadastro class="col-md-6" label="Cidade" placeholder="Cidade" field-model="vo.cidade" ng-disabled="disabled"></input-cadastro>
+				
+				<select-cadastro class="col-md-6" label="UF" field-model="vo.uf" ng-disabled="disabled" empty="[Selecione o estado]" values="estados"></select-cadastro>
+            </uib-tab>
+            <uib-tab index="2" heading="Observações">
+            	<input-cadastro textarea rows="10" class="col-md-12" label="Observações" placeholder="Observações" field-model="vo.observacoes" ng-disabled="disabled"></input-cadastro>
+            </uib-tab>
+        </uib-tabset>
+    </campos>
+</form-cadastro>

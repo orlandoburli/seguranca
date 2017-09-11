@@ -1,0 +1,76 @@
+<panel title="Dados gerais de {{ vo.nome | uppercase }}" subTitle="Informações gerais do cadastro">
+
+  <row>
+    <col-sm-3>
+      <div class="container-img-button">
+        <img id="imgFoto" style="width: 100%;" [src]="getFoto()" class="img-thumbnail image" />
+        <div class="middle-img-button">
+          <button class="btn btn-info btn-block" (click)="tirarFoto()"><i class="icofont icofont-camera"></i> Tirar foto</button>
+          <button class="btn btn-danger btn-block" (click)="limparFoto()"><i class="icofont icofont-trash"></i> Limpar foto</button>
+        </div>
+      </div>
+    </col-sm-3>
+
+    <col-sm-9>
+      <row>
+        <input-group width="8" label="Nome da pessoa" help="Informe o nome da pessoa" [(ngModel)]="vo.nome" id="nome" [disabled]="isExcluir()"></input-group>
+        <select-group width="4" label="Tipo" help="Informe o tipo de pessoa" [options]="itensTipoPessoa" [(ngModel)]="vo.tipoPessoa.id" id="tipoPessoa" [disabled]="isExcluir()"></select-group>
+      </row>
+
+      <row>
+        <input-group width="8" label="RG" help="Informe o RG da pessoa" [(ngModel)]="vo.rg" id="rg" [disabled]="isExcluir()"></input-group>
+        <input-group width="4" label="Órgão do RG" help="Informe o órgão do RG da pessoa" [(ngModel)]="vo.orgaoRg" id="orgaoRg" [disabled]="isExcluir()"></input-group>
+      </row>
+
+      <row>
+        <input-group width="6" label="CPF" help="Informe o CPF da pessoa" [(ngModel)]="vo.cpf" id="cpf" [disabled]="isExcluir()" type="cpf"></input-group>
+        <input-group width="6" label="Carteira de Motorista" help="Informe a carteira de motorista da pessoa" [(ngModel)]="vo.cnh" id="cnh" [disabled]="isExcluir()"></input-group>
+      </row>
+
+      <row>
+        <input-group width="6" label="Fone fixo 1" help="Informe o telefone fixo da pessoa" [(ngModel)]="vo.fone1" id="fone1" [disabled]="isExcluir()" type="phone"></input-group>
+        <input-group width="6" label="Fone fixo 2" help="Informe outro telefone fixo da pessoa" [(ngModel)]="vo.fone2" id="fone2" [disabled]="isExcluir()" type="phone"></input-group>
+      </row>
+
+      <row>
+        <input-group width="6" label="Celular 1" help="Informe o número de celular da pessoa" [(ngModel)]="vo.celular1" id="celular1" [disabled]="isExcluir()" type="mobile-phone"></input-group>
+        <input-group width="6" label="Celular 2" help="Informe outro número de celular da pessoa" [(ngModel)]="vo.celular2" id="celular2" [disabled]="isExcluir()" type="mobile-phone"></input-group>
+      </row>
+    </col-sm-9>
+  </row>
+
+
+</panel>
+
+<panel title="Endereço" subTitle="Informações sobre o endereço">
+  <row>
+    <input-group width="3" label="CEP" help="Informe o cep da pessoa" [(ngModel)]="vo.cep" id="cep" [disabled]="isExcluir()" type="cep"></input-group>
+    <input-group width="9" label="Endereço" help="Informe o endereço da pessoa" [(ngModel)]="vo.endereco" id="endereco" [disabled]="isExcluir()"></input-group>
+  </row>
+
+  <row>
+    <input-group width="4" label="Bairro" help="Informe o bairro da pessoa" [(ngModel)]="vo.bairro" id="bairro" [disabled]="isExcluir()"></input-group>
+    <input-group width="5" label="Cidade" help="Informe a cidade do endereço da pessoa" [(ngModel)]="vo.cidade" id="cidade" [disabled]="isExcluir()"></input-group>
+    <select-group width="3" label="UF" help="Informe o estado do endereço da pessoa" [(ngModel)]="vo.uf" id="uf" [disabled]="isExcluir()" [options]="itensEstados"></select-group>
+  </row>
+
+  <row>
+    <input-group width="12" label="Complemento" help="Informe o complemento do endereço da pessoa" [(ngModel)]="vo.complemento" id="complemento" [disabled]="isExcluir()"></input-group>
+  </row>
+</panel>
+
+<row>
+  <col-sm-6></col-sm-6>
+
+  <col-sm-3 *ngIf="!isExcluir()">
+    <botao-salvar (click)="salvar()"></botao-salvar>
+  </col-sm-3>
+
+  <col-sm-3 *ngIf="isExcluir()">
+    <botao-excluir (click)="excluir()"></botao-excluir>
+  </col-sm-3>
+
+  <col-sm-3>
+    <botao-voltar (click)="voltar()"></botao-voltar>
+  </col-sm-3>
+</row>

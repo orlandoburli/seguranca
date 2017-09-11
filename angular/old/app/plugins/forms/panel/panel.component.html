@@ -1,0 +1,12 @@
+<div class="portlet light bordered">
+  <div *ngIf="titulo" class="portlet-title">
+    <div class="caption ">
+      <i class="fa fa-windows "></i>
+      <span class="caption-subject bold uppercase"> {{ titulo }}</span>
+      <span class="caption-helper"> {{ subTitulo }}</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <ng-content></ng-content>
+  </div>
+</div>

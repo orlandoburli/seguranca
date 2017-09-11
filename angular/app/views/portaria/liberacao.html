@@ -1,0 +1,344 @@
+<form-cadastro>
+    <campos>
+        <row>
+            <div class="portlet light bordered" id="form_wizard_1">
+                <div class="portlet-body form">
+                    <form class="form-horizontal" action="#" id="submit_form" method="POST" onsubmit="return false;">
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li ng-class="{active : etapa == 1}">
+                                        <a href class="step">
+                                            <span class="number"> 1 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Tipo de Acesso </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 2}">
+                                        <a href class="step">
+                                            <span class="number"> 2 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Local de Entrada </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 3}">
+                                        <a href class="step">
+                                            <span class="number"> 3 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Morador autorização </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 4}">
+                                        <a href class="step">
+                                            <span class="number"> 4 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Destino </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 5}">
+                                        <a href class="step">
+                                            <span class="number"> 5 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Forma de autorização </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 6}">
+                                        <a href class="step">
+                                            <span class="number"> 6 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Confirmação </span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{active : etapa == 7}">
+                                        <a href class="step">
+                                            <span class="number"> 7 </span>
+                                            <span class="desc">
+									<i class="fa fa-check"></i> Acesso liberado </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="bar" class="progress progress-striped" role="progressbar">
+                                    <div class="progress-bar progress-bar-success" style="width: {{etapa / etapaMaximo * 100}}%"> </div>
+                                </div>
+                                
+                                <div class="portlet light">
+                                    <div class="portlet-body form">
+                                        <form class="form-horizontal" action="#" method="GET">
+                                            <div class="form-body">
+                                                <div class="form-group" ng-show="vo.tipoAcesso && etapa > 1">
+                                                    <label class="col-md-3 control-label">Tipo de Acesso</label>
+                                                    <div class="col-md-9">
+                                                        <label class="control-label"><strong>{{vo.tipoAcesso | uppercase }}</strong></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-show="vo.porta && etapa > 2">
+                                                    <label class="col-md-3 control-label">Local de Entrada</label>
+                                                    <div class="col-md-9">
+                                                        <label class="control-label"><strong>{{vo.porta.nome | uppercase }}</strong></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-show="vo.morador && etapa > 3">
+                                                    <label class="col-md-3 control-label">Morador que autorizou a entrada</label>
+                                                    <div class="col-md-9">
+                                                        <label class="control-label"><strong>{{vo.morador.pessoa.nome | uppercase }} / {{vo.morador.unidade.numero}} / {{vo.morador.unidade.bloco.nome}} / {{vo.morador.unidade.torre.nome}} </strong></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-show="vo.morador && etapa > 4">
+                                                    <label class="col-md-3 control-label">Destino</label>
+                                                    <div class="col-md-9">
+                                                        <label class="control-label" ng-if="vo.tipoDestino==AREA_COMUM"><strong>{{vo.tipoDestino | uppercase }} - {{vo.areaComumDestino.nome | uppercase}}</strong></label>
+                                                        <label class="control-label" ng-if="vo.tipoDestino==UNIDADE"><strong>{{vo.tipoDestino | uppercase }} - {{vo.unidadeDestino.numero}}</strong></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-show="vo.morador && etapa > 5">
+                                                    <label class="col-md-3 control-label">Forma Autorização</label>
+                                                    <div class="col-md-9">
+                                                        <label class="control-label"><strong>{{vo.formaAutorizacao | uppercase }}</strong></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <!-- Parte 1 - Tipo de Acesso -->
+                                    <div class="tab-pane" id="tab1" ng-class="{active : etapa == 1}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Informe o tipo de acesso</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <!-- <h3>Informe o tipo de acesso</h3> -->
+                                                        <div class="row center">
+                                                            <div class="col-md-6" ng-repeat="tipo in tiposAcesso">
+                                                                <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="selecionarTipo(tipo)">{{tipo}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Parte 2 - Porta -->
+                                    <div class="tab-pane" id="tab2" ng-class="{active : etapa == 2}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Informe o local de acesso</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <div class="row form-group">
+                                                            <div class="col-md-6" ng-repeat="porta in portas">
+                                                                <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="selecionarPorta(porta)">{{porta.nome}}</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-offset-3 col-md-6">
+                                                                <a href="javascript:;" class="btn btn-block btn-lg default" ng-click="voltar()">
+                                                                    <i class="fa fa-angle-left"></i> Voltar </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Parte 3 - Morador Liberação -->
+                                    <div class="tab-pane" id="tab3" ng-class="{active : etapa == 3}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Informe o morador que autorizou a entrada</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <!-- Consulta de morador -->
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group col-md-12">
+                                                                    <input-consulta id="inputFiltroMoradorGeral" class="form-group col-sm-6 margem-componente" label="Pesquisar por qualquer campo (Nome, email, CPF, RG ou telefone)" placeholder="Digite um valor para pesquisar pela pessoa" filter-model="filterMorador.filtroGeral" filter-change="atualizarMorador()"></input-consulta>
+                                                                    <input-consulta class="form-group col-sm-4 margem-componente" label="Unidade" placeholder="Pesquise pelo número da unidade" filter-model="filterMorador.unidade$numero" filter-change="atualizarMorador()"></input-consulta>
+                                                                    <div class="form-group col-sm-2 margem-componente margem-botao">
+                                                                        <botao-limpar ng-click="limparPesquisaMorador()" full></botao-limpar>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <table ng-table="tableParamsMorador" class="table table-hover table-striped table-advance col-md-12">
+                                                                        <tr style="cursor: pointer;" ng-repeat="morador in $data track by morador.id" ng-click="selecionarMorador(morador)">
+                                                                            <!-- Colunas -->
+                                                                            <td sortable="'pessoa.nome'" data-title="'Nome'" class="col-sm-6">{{morador.pessoa.nome}}</td>
+                                                                            <td sortable="'unidade.numero'" data-title="'Unidade'" class="col-sm-2">{{morador.unidade.numero}}</td>
+                                                                            <td sortable="'pessoa.tipoPessoa'" data-title="'Tipo'" class="col-sm-2">{{morador.pessoa.tipoPessoa.nome}}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-offset-3 col-md-6">
+                                                <a href="javascript:;" class="btn btn-block btn-lg default" ng-click="voltar()">
+                                                    <i class="fa fa-angle-left"></i> Voltar </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Parte 4 - Destino -->
+                                    <div class="tab-pane" id="tab4" ng-class="{active : etapa == 4}">
+                                        <!--  -->
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Informe o destino</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <div class="row form-group">
+                                                            <div class="col-md-6" ng-repeat="tipo in tiposDestino">
+                                                                <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="selecionarTipoDestino(tipo)">{{tipo}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- Especifico para a área comum -->
+                                        <div class="portlet light" ng-show="vo.tipoDestino == AREA_COMUM">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Selecione a área comum</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <div ng-show="vo.tipoDestino == AREA_COMUM">
+                                                            <div class="row form-group">
+                                                                <div class="form-group col-md-4" ng-repeat="area in areasComuns" style="margin-left: 15px">
+                                                                    <button type="button" class="btn btn-lg btn-block green-dark" ng-click="selecionarAreaComum(area)">{{area.nome}}</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-offset-3 col-md-6">
+                                                <a href="javascript:;" class="btn btn-block btn-lg default" ng-click="voltar()">
+                                                    <i class="fa fa-angle-left"></i> Voltar </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Parte 5 - Forma de autorização -->
+                                    <div class="tab-pane" id="tab5" ng-class="{active : etapa == 5}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Forma de autorização</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <div class="row form-group">
+                                                            <div class="col-md-6" ng-repeat="forma in formasAutorizacao">
+                                                                <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="selecionarFormaAutorizacao(forma)">{{forma}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-offset-3 col-md-6">
+                                                    <a href="javascript:;" class="btn btn-block btn-lg default" ng-click="voltar()">
+                                                        <i class="fa fa-angle-left"></i> Voltar </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Parte 6 - Confirmação -->
+                                    <div class="tab-pane" id="tab5" ng-class="{active : etapa == 6}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Confirmação</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <div class="row form-group">
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-lg btn-block green-dark" ng-click="confirmar()">Confirmar</button>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-lg btn-block btn-primary" ng-click="confirmar()"><i class="fa fa-angle-left"></i> Voltar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Parte 7 - Liberado -->
+                                    <div class="tab-pane" id="tab5" ng-class="{active : etapa == 7}">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-layers font-blue-ebonyclay"></i>
+                                                    <span class="caption-subject font-blue-ebonyclay bold uppercase">Acesso liberado</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <form class="form-horizontal" action="#" method="GET">
+                                                    <div class="form-body">
+                                                        <!--  -->
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-offset-3 col-md-6">
+                                                    <a href="javascript:;" class="btn btn-block btn-lg default" ng-click="limpar()">
+                                                        <i class="fa fa-angle-left"></i> OK </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </row>
+    </campos>
+    <botoes>
+        <!-- Botoes -->
+        <!-- <button class="btn btn-primary" ng-click="avancar()" ng-disabled="etapa==etapaMaximo"><i class="fa fa-arrow-right" aria-hidden="true"></i> Próximo</button>
+        <button class="btn btn-primary" ng-click="voltar()" ng-disabled="etapa <= 1"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button> -->
+    </botoes>
+</form-cadastro>

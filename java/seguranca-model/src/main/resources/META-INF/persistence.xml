@@ -1,0 +1,49 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="default" transaction-type="JTA">
+
+		<!-- provedor/implementacao do JPA -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<!-- Data Source -->
+		<jta-data-source>java:/segurancaDS</jta-data-source>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.bloco.Bloco</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.tipopessoa.TipoPessoa</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.pessoa.Pessoa</class>
+		<class>br.com.orlandoburli.seguranca.model.acesso.perfil.Perfil</class>
+		<class>br.com.orlandoburli.seguranca.model.acesso.usuario.Usuario</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.torre.Torre</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.unidade.Unidade</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.morador.Morador</class>
+		<class>br.com.orlandoburli.seguranca.model.geral.parametro.Parametro</class>
+		<class>br.com.orlandoburli.seguranca.model.cadastros.veiculo.Veiculo</class>
+		<class>br.com.orlandoburli.seguranca.model.tabelasbasicas.porta.Porta</class>
+		<class>br.com.orlandoburli.seguranca.model.tabelasbasicas.areacomum.AreaComum</class>
+		<class>br.com.orlandoburli.seguranca.model.portaria.preliberacao.PreLiberacao</class>
+		<class>br.com.orlandoburli.seguranca.model.portaria.liberacao.Liberacao</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+		<properties>
+			<!-- propriedades do hibernate -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true"/>
+
+			<!-- atualiza o banco, gera as tabelas se for preciso -->
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+
+			<!-- Desabilita o cache -->
+			<property name="hibernate.cache.use_query_cache" value="false" />
+			<property name="hibernate.cache.use_second_level_cache"
+				value="false" />
+
+			<!-- Habilita o Lazy Loading sem transação -->
+			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

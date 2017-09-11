@@ -1,0 +1,14 @@
+<form-cadastro>
+    <campos>
+    	<row>
+	    	<input-cadastro class="col-md-12" label="Nome" placeholder="Nome da Área Comum" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+	    	<!-- <select-cadastro class="col-md-2" label="Tipo" field-model="vo.tipo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="tiposPorta"></select-cadastro> -->
+	    </row>
+	    <row>
+	    	<input-cadastro class="col-md-10" label="Número Máximo de convidados" placeholder="Número Máximo de convidados para esta área comum" required number field-model="vo.maximoConvidados" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="10"></input-cadastro>
+
+			<select-cadastro class="col-md-2" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+		</row>
+    </campos>
+</form-cadastro>

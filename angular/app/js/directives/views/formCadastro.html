@@ -1,0 +1,33 @@
+<div>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">{{$state.current.data.parentTitle}}</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active"> {{$state.current.data.pageTitle}} </li>
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered ">
+            <div class="portlet-body form">
+                <form role="form" id="formulario" name="formulario" novalidate ng-submit="form.submit(formulario)" >
+                    <div ng-transclude="campos">
+                    	<!-- Campos -->
+                    </div>
+                    <div class="clearfix form-group text-right" ng-transclude="botoes">
+                        <!-- Botoes padrao -->
+                        <botao-salvar ng-show="isInclusao() || isAlteracao()"></botao-salvar>
+                        <botao-excluir ng-click="excluir()" ng-show="!isInclusao()"></botao-excluir>
+                        <botao-voltar ng-click="voltar()"></botao-voltar>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+<form-pesquisa>
+
+    <filtros>
+        <input-consulta class="form-group col-sm-6" label="Nome do usuário" placeholder="Digite um valor para pesquisar pelo nome do usuário" filter-model="filter.nome" filter-change="atualizar()"></input-consulta>
+
+        <select-consulta class="form-group col-sm-4 margem-componente" label="Status" filter-model="filter.ativo" filter-change="atualizar()" values="ativos" simple todos />
+
+        <div class="form-group col-sm-2 margem-componente margem-botao">
+            <botao-limpar ng-click="limpar()" full/>
+        </div>
+    </filtros>
+
+    <tabela>
+        <table ng-table="tableParams" class="table table-hover table-striped table-advance col-md-12">
+            <tr ng-repeat="usuario in $data track by usuario.id">
+                <!-- Colunas -->
+                <td sortable="'nome'" data-title="'Nome'" class="col-sm-7">{{usuario.nome}}</td>
+                <td sortable="'perfil.nome'" data-title="'Perfil'" class="col-sm-2">{{usuario.perfil.nome}}</td>
+                <td sortable="'ativo'" data-title="'Status'" class="col-sm-1">{{usuario.ativo}}</td>
+
+                <!-- Botoes -->
+                <td class="text-right form-group col-sm-2">
+                    <botao-alterar mini ng-click="alterar(usuario.id)"/>
+                    <botao-excluir mini ng-click="excluir(usuario.id)"/>
+                </td>
+            </tr>
+        </table>
+    </tabela>
+
+    <botoes>
+        <botao-novo ng-click="novo()"/>
+    </botoes>
+
+</form-pesquisa>

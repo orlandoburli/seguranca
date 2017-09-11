@@ -1,0 +1,108 @@
+<form-cadastro>
+    <campos>
+        <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="Dados Gerais">
+
+				<h4><strong>Dados Gerais</strong></h4>
+				<hr />
+			    
+			    <div class="row">
+				    <input-cadastro class="col-md-6" label="Nome" placeholder="Nome da Pessoa" required field-model="vo.pessoa.nome" ng-disabled="disabled" required ng-maxlength="100"></input-cadastro>
+
+					<select-cadastro class="col-md-6" label="Tipo de Pessoa" field-model="vo.pessoa.tipoPessoa" ng-disabled="disabled" required empty="[Informe o tipo de pessoa]" values="tiposPessoa" my-options="tipo as tipo.nome for tipo in values track by tipo.id"></select-cadastro>
+				</div>
+
+				<h4><strong>Documentos</strong></h4>
+				<hr />
+
+				<div class="row">
+					<input-cadastro class="col-md-4" label="RG" placeholder="RG" field-model="vo.pessoa.rg" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+					
+					<input-cadastro class="col-md-2" label="Órgão/RG" placeholder="Órgão de emissão do RG" field-model="vo.pessoa.orgaoRg" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+
+					<input-cadastro class="col-md-3" label="CPF" placeholder="CPF" field-model="vo.pessoa.cpf" ng-disabled="disabled" cpf></input-cadastro>
+
+					<input-cadastro class="col-md-3" label="CNH / Motorista" placeholder="Número da carteira de motorista" field-model="vo.pessoa.cnh" ng-disabled="disabled" ng-maxlength="20"></input-cadastro>
+				</div>
+
+				<h4><strong>Contato</strong></h4>
+				<hr />
+				
+				<div class="row">
+					<input-cadastro class="col-md-6" label="Celular 1" placeholder="Celular (com DDD)" field-model="vo.pessoa.celular1" ng-disabled="disabled" phone></input-cadastro>
+
+					<input-cadastro class="col-md-6" label="Celular 2" placeholder="Celular (com DDD)" field-model="vo.pessoa.celular2" ng-disabled="disabled" phone></input-cadastro>
+				</div>
+				
+				<div class="row">
+					<input-cadastro class="col-md-6" label="Fone Fixo 1" placeholder="Telefone Fixo (com DDD)" field-model="vo.pessoa.fone1" ng-disabled="disabled" phone></input-cadastro>
+					<input-cadastro class="col-md-6" label="Fone Fixo 2" placeholder="Telefone Fixo (com DDD)" field-model="vo.pessoa.fone2" ng-disabled="disabled" phone></input-cadastro>
+				</div>
+				
+				<div class="row">
+					<select-cadastro-x class="col-md-2" label="Unidade" required field-model="vo.unidade" ng-disabled="disabled" placeholder="Unidade do morador" empty="[Selecione a Unidade]" values="unidades" itens="unidades" field-name="numero" small="{{item.bloco.nome}}, {{item.torre.nome}}"></select-cadastro-x>
+
+					<!-- 
+					<div class="form-group col-md-2" ng-class="{'has-error':formulario.vo_unidade.$dirty && formulario.vo_unidade.$invalid, 'has-successx':formulario.vo_unidade.$valid}">
+						<label class="control-label" for="vo_unidade">Unidade</label>
+						<ui-select id="vo_unidade" name="vo_unidade" class="" ng-model="vo.unidade" ng-change="updateModel()" ng-disabled="ngDisabled" required >
+							<ui-select-match placeholder="Unidade">{{$select.selected.numero}}</ui-select-match>
+							<ui-select-choices repeat="item in unidades | filter: $select.search">
+								<div ng-bind-html="item.numero | highlight: $select.search"></div>
+								<small>
+							        {{item.bloco.nome}}, {{item.torre.nome}}
+							    </small>
+							</ui-select-choices>
+						</ui-select>
+						<span class="font-red text-small block" ng-show="formulario.$submitted && formulario.vo_unidade.$error.required">Campo Unidade é obrigatório!</span>
+					</div> 
+					-->
+
+					<input-cadastro class="col-md-2" label="Torre" field-model="vo.unidade.torre.nome" ng-disabled="true"></input-cadastro>
+
+					<input-cadastro class="col-md-2" label="Bloco" field-model="vo.unidade.bloco.nome" ng-disabled="true"></input-cadastro>
+				</div>
+				
+				<div class="row">
+		        	<ul class="col-md-12">
+					  <li ng-repeat="(key, errors) in form.$error track by $index"> <strong>{{ key }}</strong> errors
+					    <ul>
+					      <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+					    </ul>
+					  </li>
+					</ul>
+		        </div>
+
+            </uib-tab>
+
+            <uib-tab index="1" heading="Endereço">
+            	<h4><strong>Endereço</strong></h4>
+				<hr />
+
+				<div class="row">
+					<input-cadastro class="col-md-2" label="CEP" placeholder="CEP do Endereço" field-model="vo.pessoa.cep" ng-disabled="disabled" cep btn-class="fa fa-search blue" btn-click="buscarCep()"></input-cadastro>
+					
+					<input-cadastro class="col-md-10" label="Endereço" placeholder="Endereço (Rua, Avenida, Número)" field-model="vo.pessoa.endereco" ng-disabled="disabled"></input-cadastro>
+				</div>
+				
+				<div class="row">
+					<input-cadastro class="col-md-6" label="Bairro" placeholder="Nome do Bairro" field-model="vo.pessoa.bairro" ng-disabled="disabled"></input-cadastro>
+					
+					<input-cadastro class="col-md-6" label="Complemento" placeholder="Complemento do Endereço (Etapa, Setor, Apartamento, Bloco, etc)" field-model="vo.pessoa.complemento" ng-disabled="
+					disabled"></input-cadastro>
+				</div>
+
+				<div class="row">
+					<input-cadastro class="col-md-6" label="Cidade" placeholder="Cidade" field-model="vo.pessoa.cidade" ng-disabled="disabled"></input-cadastro>
+					
+					<select-cadastro class="col-md-6" label="UF" field-model="vo.pessoa.uf" ng-disabled="disabled" empty="[Selecione o estado]" values="estados"></select-cadastro>
+				</div>
+            </uib-tab>
+            <uib-tab index="2" heading="Observações">
+            	<input-cadastro textarea rows="10" class="col-md-12" label="Observações" placeholder="Observações" field-model="vo.pessoa.observacoes" ng-disabled="disabled"></input-cadastro>
+            </uib-tab>
+        </uib-tabset>
+
+        
+    </campos>
+</form-cadastro>

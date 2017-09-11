@@ -1,0 +1,11 @@
+<form-cadastro>
+    <campos>
+		<input-cadastro class="col-md-6" label="Número da Unidade" placeholder="Número da Unidade" required field-model="vo.numero" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		<select-cadastro class="col-md-6" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+		<select-cadastro class="col-md-6" label="Torre" field-model="vo.torre" ng-disabled="!(isInclusao() || isAlteracao())" required 
+			empty="[Selecione uma torre]" values="torres" my-options="torre as torre.nome for torre in values track by torre.id">
+		</select-cadastro>
+		<select-cadastro class="col-md-6" label="Bloco" field-model="vo.bloco" ng-disabled="!(isInclusao() || isAlteracao())" required 
+			empty="[Selecione um bloco]" values="blocos" my-options="bloco as bloco.nome for bloco in values track by bloco.id"></select-cadastro>
+    </campos>
+</form-cadastro>

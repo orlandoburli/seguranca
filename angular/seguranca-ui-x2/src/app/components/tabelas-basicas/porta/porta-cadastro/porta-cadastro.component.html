@@ -1,0 +1,26 @@
+<panel>
+  <row>
+    <input-group width="6" label="Nome da porta" help="Informe o nome da porta" [(ngModel)]="vo.nome" id="nome" [disabled]="isExcluir()"></input-group>
+
+    <select-group width="6" label="Status" help="Informe o status" [(ngModel)]="vo.ativo" [options]="itensStatus" id="ativo" [disabled]="isExcluir()"></select-group>
+
+    <select-group width="6" label="Tipo de Porta (Entrada / Saída')" help="Informe o tipo da porta" [(ngModel)]="vo.tipo" [options]="itensTipoPorta" id="tipo" [disabled]="isExcluir()"></select-group>
+
+  </row>
+
+  <row>
+    <col-sm-6></col-sm-6>
+
+    <col-sm-3 *ngIf="!isExcluir()">
+      <botao-salvar (click)="salvar()"></botao-salvar>
+    </col-sm-3>
+
+    <col-sm-3 *ngIf="isExcluir()">
+      <botao-excluir (click)="excluir()"></botao-excluir>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-voltar (click)="voltar()"></botao-voltar>
+    </col-sm-3>
+  </row>
+</panel>

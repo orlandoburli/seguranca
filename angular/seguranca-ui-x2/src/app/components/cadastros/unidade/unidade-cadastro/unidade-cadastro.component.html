@@ -1,0 +1,28 @@
+<panel>
+  <row>
+    <input-group width="6" label="Número da unidade" help="Pesquise pelo número da unidade" [(ngModel)]="vo.numero" id="numero" [disabled]="isExcluir()"></input-group>
+
+    <select-group width="6" label="Status" help="Informe o status" [(ngModel)]="vo.ativo" [options]="itensStatus" id="ativo" [disabled]="isExcluir()"></select-group>
+
+    <select-group width="6" label="Bloco" help="Informe o bloco" [(ngModel)]="vo.bloco.id" [options]="itensBlocos" id="bloco" [disabled]="isExcluir()"></select-group>
+
+    <select-group width="6" label="Torre" help="Informe a torre" [(ngModel)]="vo.torre.id" [options]="itensTorres" id="torre" [disabled]="isExcluir()"></select-group>
+  </row>
+
+<row>
+    <col-sm-6></col-sm-6>
+
+    <col-sm-3 *ngIf="!isExcluir()">
+      <botao-salvar (click)="salvar()"></botao-salvar>
+    </col-sm-3>
+
+    <col-sm-3 *ngIf="isExcluir()">
+      <botao-excluir (click)="excluir()"></botao-excluir>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-voltar (click)="voltar()"></botao-voltar>
+    </col-sm-3>
+  </row>
+</panel>
+

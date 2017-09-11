@@ -1,0 +1,23 @@
+<form-cadastro>
+    <campos>
+    	<row>
+			<input-cadastro class="col-md-3" car label="Placa" placeholder="Placa do carro" required  field-model="vo.placa" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+			<input-cadastro class="col-md-4" label="Marca" placeholder="Marca do carro" field-model="vo.marca" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+			<input-cadastro class="col-md-5" label="Modelo" placeholder="Modelo do carro" field-model="vo.modelo" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		</row>
+
+
+		<row>
+			<input-cadastro class="col-md-5" label="Cor" placeholder="Cor do carro" field-model="vo.cor" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+			<input-cadastro class="col-md-2" label="Ano" placeholder="Ano do carro" required field-model="vo.ano" number ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="4"></input-cadastro>
+
+			<select-cadastro class="col-md-3" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+		</row>
+
+		<row>
+			<select-cadastro-x class="col-md-12" label="Morador / Proprietário do Veículo" required field-model="vo.morador" ng-disabled="disabled" placeholder="Morador / Proprietário do veículo" empty="[Selecione o Morador]" values="moradores" itens="moradores" field-name="pessoa.nome" small="{{item.unidade.numero}}, , {{item.unidade.bloco.nome}}, {{item.unidade.torre.nome}}"></select-cadastro-x>
+		</row>
+    </campos>
+</form-cadastro>

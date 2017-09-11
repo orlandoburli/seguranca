@@ -1,0 +1,77 @@
+<!-- BEGIN HEADER -->
+<header class="page-header">
+  <nav class="navbar mega-menu" role="navigation">
+    <div class="container-fluid">
+      <!-- BEGIN TOPBAR ACTIONS -->
+      <div class="topbar-actions">
+        <!-- BEGIN USER PROFILE -->
+        <div class="btn-group-img btn-group">
+          <button type="button" class="btn btn-sm md-skip dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                        <span>Hi, Marcus</span>
+                                        <img src="../assets/layouts/layout5/img/avatar1.jpg" alt=""> </button>
+          <ul class="dropdown-menu-v2" role="menu">
+            <li>
+              <a href="page_user_profile_1.html">
+                <i class="icon-user"></i> My Profile
+                <span class="badge badge-danger">1</span>
+              </a>
+            </li>
+            <li>
+              <a href="app_calendar.html">
+                <i class="icon-calendar"></i> My Calendar </a>
+            </li>
+            <li>
+              <a href="app_inbox.html">
+                <i class="icon-envelope-open"></i> My Inbox
+                <span class="badge badge-danger"> 3 </span>
+              </a>
+            </li>
+            <li>
+              <a href="app_todo_2.html">
+                <i class="icon-rocket"></i> My Tasks
+                <span class="badge badge-success"> 7 </span>
+              </a>
+            </li>
+            <li class="divider"> </li>
+            <li>
+              <a href="page_user_lock_1.html">
+                <i class="icon-lock"></i> Bloquear tela </a>
+            </li>
+            <li>
+              <a href="page_user_login_1.html">
+                <i class="icon-key"></i> Sair </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END USER PROFILE -->
+      </div>
+      <!-- END TOPBAR ACTIONS -->
+
+      <!-- BEGIN HEADER MENU -->
+      <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+
+          <li *ngFor="let menu of menus" class="dropdown dropdown-fw dropdown-fw-disabled">
+            <a *ngIf="menu.url" [routerLink]="[menu.url]" class="text-uppercase">
+              <i class="{{menu.classIcon}}"></i> {{menu.title}}
+            </a>
+
+            <a *ngIf="!menu.url" href="javascript:void(0)" class="text-uppercase">
+              <i class="{{menu.classIcon}}"></i> {{menu.title}}
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-fw">
+              <li *ngFor="let item of menu.itens">
+                <a [routerLink]="[item.url]">
+                  <i class="{{item.classIcon}}"></i> {{item.title}} </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- END HEADER MENU -->
+    </div>
+    <!--/container-->
+  </nav>
+</header>
+<!-- END HEADER -->

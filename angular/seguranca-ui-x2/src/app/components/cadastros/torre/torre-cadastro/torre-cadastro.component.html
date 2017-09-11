@@ -1,0 +1,33 @@
+<panel>
+  <row>
+    <input-group width="6" label="Nome da torre" help="Informe o nome da torre" [(ngModel)]="vo.nome" id="nome" [disabled]="isExcluir()"></input-group>
+
+    <select-group width="6" label="Status" help="Informe o status" [(ngModel)]="vo.ativo" [options]="itensStatus" id="ativo" [disabled]="isExcluir()"></select-group>
+  </row>
+
+  <row>
+    <input-group width="6" label="Andares" help="Informe a quantidade de andares da torre" [(ngModel)]="vo.andares" id="andares" [disabled]="isExcluir()"></input-group>
+
+    <input-group width="6" label="Unidades por andar" help="Informe a quantidade de unidades por andar" [(ngModel)]="vo.unidadesPorAndar" id="unidadesPorAndar" [disabled]="isExcluir()"></input-group>
+  </row>
+
+  <row>
+    <select-group width="6" label="Térreo" help="Informe se a torre possui apartamentos no térreo'" [(ngModel)]="vo.terreo" [options]="itensSimNao" id="terreo" [disabled]="isExcluir()"></select-group>
+  </row>
+
+  <row>
+    <col-sm-6></col-sm-6>
+
+    <col-sm-3 *ngIf="!isExcluir()">
+      <botao-salvar (click)="salvar()"></botao-salvar>
+    </col-sm-3>
+
+    <col-sm-3 *ngIf="isExcluir()">
+      <botao-excluir (click)="excluir()"></botao-excluir>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-voltar (click)="voltar()"></botao-voltar>
+    </col-sm-3>
+  </row>
+</panel>

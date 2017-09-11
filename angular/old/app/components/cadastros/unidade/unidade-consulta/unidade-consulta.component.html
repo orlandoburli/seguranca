@@ -1,0 +1,50 @@
+<panel>
+  <row>
+    <input-group width="3" label="Número da unidade" help="Pesquise pelo número da unidade" [(ngModel)]="filtro.numero" (ngModelChange)="pesquisar()" id="numero"></input-group>
+
+    <select-group width="3" label="Status" help="Pesquise pelo status" [(ngModel)]="filtro.ativo" (ngModelChange)="pesquisar()"
+      [options]="itensStatus"></select-group>
+
+    <col-sm-2>
+      <botao-pesquisar (click)="pesquisar()"></botao-pesquisar>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-limpar-pesquisa (click)="limpar()"></botao-limpar-pesquisa>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-novo (click)="novo()"></botao-novo>
+    </col-sm-2>
+  </row>
+
+  <row>
+    <select-group width="3" label="Bloco" help="Pesquise pelo bloco" [(ngModel)]="filtro.bloco$id" (ngModelChange)="pesquisar()"
+      [options]="itensBlocos"></select-group>
+
+    <select-group width="3" label="Torre" help="Pesquise pela torre" [(ngModel)]="filtro.torre$id" (ngModelChange)="pesquisar()"
+      [options]="itensTorres"></select-group>
+  </row>
+
+  <row>
+    <col-sm-12>
+
+      <dt-data-table #dt [total]="dados?.total" [data]="dados?.lista" [paginated]="true" (onPaginate)="paginacao($event)" keyEvents="true">
+        <column width="4" field="numero" header="Número da Unidade"></column>
+        <column width="2" field="bloco.nome" header="Bloco"></column>
+        <column width="2" field="torre.nome" header="Torre"></column>
+        <column width="2" field="ativo" header="Ativo"></column>
+
+        <column width="2" useTemplate="true" alignment="center">
+
+          <template let-unidade="data" let-index="index">
+            <botao-grid-alterar (click)="editar(unidade)"></botao-grid-alterar>
+            <botao-grid-excluir (click)="excluir(unidade)"></botao-grid-excluir>
+          </template>
+
+        </column>
+      </dt-data-table>
+
+    </col-sm-12>
+  </row>
+</panel>

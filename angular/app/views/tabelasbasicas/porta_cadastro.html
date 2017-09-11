@@ -1,0 +1,14 @@
+<form-cadastro>
+    <campos>
+    	<row>
+	    	<input-cadastro class="col-md-10" label="Nome" placeholder="Nome da porta" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+	    	<select-cadastro class="col-md-2" label="Tipo" field-model="vo.tipo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="tiposPorta"></select-cadastro>
+	    </row>
+	    <row>
+	    	<input-cadastro class="col-md-10" label="Comando" placeholder="Comando da porta" required field-model="vo.comando" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+			<select-cadastro class="col-md-2" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+		</row>
+    </campos>
+</form-cadastro>

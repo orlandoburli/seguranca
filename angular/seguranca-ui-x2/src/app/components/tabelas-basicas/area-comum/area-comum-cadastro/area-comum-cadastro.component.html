@@ -1,0 +1,25 @@
+<panel>
+  <row>
+    <input-group width="6" label="Nome da área comum" help="Informe o nome da área comum" [(ngModel)]="vo.nome" id="nome" [disabled]="isExcluir()"></input-group>
+
+    <select-group width="6" label="Status" help="Informe o status" [(ngModel)]="vo.ativo" [options]="itensStatus" id="ativo" [disabled]="isExcluir()"></select-group>
+
+    <input-group width="6" label="Máximo de convidados" help="Informe o máximo de convidados permitidos" [(ngModel)]="vo.maximoConvidados" id="maximoConvidados" [disabled]="isExcluir()"></input-group>
+  </row>
+
+  <row>
+    <col-sm-6></col-sm-6>
+
+    <col-sm-3 *ngIf="!isExcluir()">
+      <botao-salvar (click)="salvar()"></botao-salvar>
+    </col-sm-3>
+
+    <col-sm-3 *ngIf="isExcluir()">
+      <botao-excluir (click)="excluir()"></botao-excluir>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-voltar (click)="voltar()"></botao-voltar>
+    </col-sm-3>
+  </row>
+</panel>

@@ -1,0 +1,9 @@
+<form-cadastro>
+    <campos>
+	<input-cadastro class="col-md-12" label="Nome" placeholder="Nome do Tipo de Pessoa" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+
+		<select-cadastro class="col-md-6" label="Ativo" placeholder="Selecione o status do tipo de pessoa" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+
+		<select-cadastro class="col-md-6" label="Morador?" placeholder="Informe se a pessoa é um morador" field-model="vo.morador" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="simNao"></select-cadastro>
+    </campos>
+</form-cadastro>

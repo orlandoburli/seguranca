@@ -1,0 +1,8 @@
+<div class="col-sm-{{ width }}">
+  <div class="form-group form-md-line-input form-md-floating-label">
+    <input type="text" class="form-control" id="internal_{{ componentId }}" [(ngModel)]="value" (blur)="onBlur()" (ngModelChange)="changeModel()"
+      [disabled]="disabled" />
+    <label for="internal_{{ componentId }} ">{{ label }}</label>
+    <span class="help-block ">{{ help }}</span>
+  </div>
+</div>

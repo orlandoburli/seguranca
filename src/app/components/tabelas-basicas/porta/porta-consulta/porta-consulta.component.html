@@ -1,0 +1,45 @@
+<panel>
+  <row>
+    <input-group width="2" label="Nome da porta" help="Pesquise pelo nome da porta" [(ngModel)]="filtro.nome" (ngModelChange)="pesquisar()"
+      id="nome"></input-group>
+
+    <select-group width="2" label="Status" help="Pesquise pelo status" [(ngModel)]="filtro.ativo" (ngModelChange)="pesquisar()"
+      [options]="itensStatus"></select-group>
+
+    <select-group width="2" label="Tipo de porta" help="Pesquise pelo tipo de porta" [(ngModel)]="filtro.tipo" (ngModelChange)="pesquisar()"
+      [options]="itensTipoPorta"></select-group>
+
+    <col-sm-2>
+      <botao-pesquisar (click)="pesquisar()"></botao-pesquisar>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-limpar-pesquisa (click)="limpar()"></botao-limpar-pesquisa>
+    </col-sm-2>
+
+    <col-sm-2>
+      <botao-novo (click)="novo()"></botao-novo>
+    </col-sm-2>
+  </row>
+
+  <row>
+    <col-sm-12>
+
+      <dt-data-table #dt [total]="dados?.total" [data]="dados?.lista" [paginated]="true" (onPaginate)="paginacao($event)" keyEvents="true">
+        <column width="6" field="nome" header="Nome da porta"></column>
+        <column width="2" field="ativo" header="Ativo"></column>
+        <column width="2" field="tipo" header="Tipo de porta"></column>
+
+        <column width="2" useTemplate="true" alignment="center">
+
+          <template let-porta="data" let-index="index">
+            <botao-grid-alterar (click)="editar(porta)"></botao-grid-alterar>
+            <botao-grid-excluir (click)="excluir(porta)"></botao-grid-excluir>
+          </template>
+
+        </column>
+      </dt-data-table>
+
+    </col-sm-12>
+  </row>
+</panel>

@@ -1,0 +1,51 @@
+<panel>
+  <row>
+    <input-group width="6" label="Pesquisa de pessoa" help="Pesquise por qualquer campo da pessoa" [(ngModel)]="filtro.filtroGeral" (ngModelChange)="pesquisar()" id="filtroGeral" [autoFocus]="true"></input-group>
+
+    <col-sm-3>
+      <botao-pesquisar [marginTop]="25" (click)="pesquisar()"></botao-pesquisar>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-limpar-pesquisa [marginTop]="25" (click)="limpar()"></botao-limpar-pesquisa>
+    </col-sm-3>
+  </row>
+
+  <row>
+    <col-sm-12>
+      <dt-data-table #dt [total]="dados?.total" [data]="dados?.lista" [paginated]="true" (onPaginate)="paginacao($event)" keyEvents="true" [pageSize]="getPageSize()">
+        <column width="6" field="nome" header="Nome da pessoa"></column>
+        <column width="2" field="tipoPessoa.nome" header="Tipo"></column>
+        <column width="2" field="celular1" header="Celular 1"></column>
+        <column width="2" field="rg" header="RG"></column>
+
+        <buttons-right *ngIf="!acessoLiberacao">
+          <col-sm-4>
+            <botao-alterar [marginTop]="37" (click)="editar()"></botao-alterar>
+          </col-sm-4>
+
+          <col-sm-4>
+            <botao-excluir [marginTop]="37" (click)="excluir()"></botao-excluir>
+          </col-sm-4>
+
+          <col-sm-4>
+            <botao-novo [marginTop]="37" (click)="novo()"></botao-novo>
+          </col-sm-4>
+
+        </buttons-right>
+
+        <buttons-right *ngIf="acessoLiberacao">
+          <col-sm-4>
+            <botao-novo [marginTop]="37" (click)="novo()"></botao-novo>
+          </col-sm-4>
+
+          <col-sm-4>
+            <button class="btn btn-h btn-fill btn-block btn-success btn-magnify" type="button" [style.marginTop.px]="37" (click)="selecionarPessoa()">
+              <i class="fa fa-plus-square"></i> Selecionar esta pessoa
+            </button>
+          </col-sm-4>
+        </buttons-right>
+      </dt-data-table>
+    </col-sm-12>
+  </row>
+</panel>

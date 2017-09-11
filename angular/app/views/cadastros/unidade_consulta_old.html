@@ -1,0 +1,87 @@
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="sidebar.nav.cadastros.UNIDADE"></h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<div class="container-fluid container-fullw" ng-controller="UnidadeController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="row">
+	                    <div class="form-group col-sm-4">
+                            <label for="nome col-sm-2">
+                                Número
+                            </label>
+                            <input type="text" focus-on-show class="form-control" placeholder="Digite um valor para pesquisar por número" ng-model="filter.numero" ng-change="atualizar()" ng-model-options="{ debounce : 250 }">
+                        </div>
+
+	                     <div class="form-group col-sm-2">
+	                        <label for="ativo">
+	                            Status
+	                        </label>
+	                        <select class="form-control" name="ativo" ng-model="filter.ativo" ng-change="atualizar()">
+	                            <option value="">TODOS</option>
+	                            <option>Ativo</option>
+	                            <option>Inativo</option>
+	                        </select>
+	                    </div>
+
+	                    <div class="form-group col-sm-2">
+                            <label for="ativo">
+                                Bloco
+                            </label>
+                            <select class="form-control" id="bloco" name="bloco" ng-model="filter.bloco$id" ng-change="atualizar()">
+                            	<option value="">TODOS</option>
+								<option ng-repeat="bloco in blocos" value="{{bloco.id}}">{{bloco.nome}}</option>
+							</select>
+                        </div>
+
+                        <div class="form-group col-sm-2">
+                            <label for="ativo">
+                                Torre
+                            </label>
+                            <select class="form-control" id="torre" name="torre" ng-model="filter.torre$id" ng-change="atualizar()">
+                                <option value="">TODOS</option>
+                                <option ng-repeat="torre in torres" value="{{torre.id}}">{{torre.nome}}</option>
+                            </select>
+                        </div>
+
+	                </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-white">
+                                <div class="panel-body">
+				                    <div>                                   
+				                        <table ng-table="tableParams" class="table table-hover table-striped table-condensed table-bordered">
+				                            <tr ng-repeat="vo in $data track by vo.id">
+				                            	<!-- Colunas -->
+				                                <td sortable="'numero'" data-title="'Número'" class="col-sm-2">{{vo.numero}}</td>
+				                                <td sortable="'torre.nome'" data-title="'Torre'" class="col-sm-2">{{vo.torre.nome}}</td>
+				                                <td sortable="'bloco.nome'" data-title="'Bloco'" class="col-sm-2">{{vo.bloco.nome}}</td>
+				                                <td sortable="'ativo'" data-title="'Status'" class="col-sm-2">{{vo.ativo}}</td>
+
+				                                <!-- Botoes -->
+				                                <td class="text-right form-group col-sm-2">
+                                                    <botao-alterar ng-click="alterar(vo.id)" mini/>
+				                                	<botao-excluir ng-click="excluir(vo.id)" mini/>
+			                                	</td>
+				                            </tr>
+				                        </table>
+				                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="btn-set pull-right">
+                            <botao-novo ng-click="novo()"/>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

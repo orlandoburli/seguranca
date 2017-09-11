@@ -1,0 +1,35 @@
+<form-pesquisa>
+
+    <filtros>
+        <input-consulta class="form-group col-sm-6" label="Pesquisar por qualquer campo (Nome, email, CPF, RG ou telefone)" placeholder="Digite um valor para pesquisar pela pessoa" filter-model="filter.filtroGeral" filter-change="atualizar()"></input-consulta>
+
+        <select-consulta class="form-group col-sm-4 margem-componente" label="Tipo de Pessoa" filter-model="filter.tipoPessoa$id" filter-change="atualizar()" values="tiposPessoa" todos />
+
+        <div class="form-group col-sm-2 margem-componente margem-botao">
+            <botao-limpar ng-click="limpar()" full/>
+        </div>
+    </filtros>
+
+    <tabela>
+        <table ng-table="tableParams" class="table table-hover table-striped table-advance col-md-12">
+            <tr ng-repeat="pessoa in $data track by pessoa.id" ng-click="alterar(pessoa.id)">
+                <!-- Colunas -->
+                <td sortable="'nome'" data-title="'Nome'" class="col-sm-7">{{pessoa.nome}}</td>
+                <td sortable="'RG'" data-title="'RG'" class="col-sm-1">{{pessoa.rg}}</td>
+                <td sortable="'CPF'" data-title="'CPF'" class="col-sm-1">{{pessoa.cpf}}</td>
+                <td sortable="'tipoPessoa'" data-title="'Tipo'" class="col-sm-1">{{pessoa.tipoPessoa.nome}}</td>
+
+                <!-- Botoes -->
+                <td class="text-right form-group col-sm-2">
+                    <botao-alterar mini ng-click="alterar(pessoa.id)"/>
+                </td>
+            </tr>
+        </table>
+    </tabela>
+
+    <botoes>
+        <botao-novo ng-click="novo()"/>
+    </botoes>
+
+</form-pesquisa>
+

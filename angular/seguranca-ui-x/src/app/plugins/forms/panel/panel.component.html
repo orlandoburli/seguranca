@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-header card-header-icon" data-background-color="blue">
+    <h4 *ngIf="getTitulo(); else elseBlock" class="card-title"> <i *ngIf="classIcon" class="material-icons">{{classIcon}}</i> {{ getTitulo() }}</h4>
+
+    <ng-template #elseBlock>
+      <i *ngIf="classIcon" class="material-icons">{{classIcon}}</i>
+    </ng-template>
+
+  </div>
+  <div class="card-content">
+    <h4 *ngIf="getSubTitulo()" class="card-title"> {{ getSubTitulo() }}</h4>
+    <ng-content></ng-content>
+  </div>
+</div>

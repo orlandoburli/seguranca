@@ -1,0 +1,12 @@
+<form-cadastro>
+    <campos>
+	    <input-cadastro class="col-md-12" label="Nome" placeholder="Nome da Torre" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		<select-cadastro class="col-md-6" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+
+		<input-cadastro class="col-md-6" label="Unidades por Andar" placeholder="Número de unidades por andar" number required field-model="vo.unidadesPorAndar" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="10"></input-cadastro>
+		<input-cadastro class="col-md-6" label="Andares" placeholder="Número de andares da torre" number required field-model="vo.andares" ng-maxlength="10" ng-disabled="!(isInclusao() || isAlteracao())"></input-cadastro>
+
+	    <select-cadastro class="col-md-6" label="Possui térreo?" field-model="vo.terreo" ng-disabled="!(isInclusao() || isAlteracao())" values="simNao" simple required ></select-cadastro>
+
+    </campos>
+</form-cadastro>

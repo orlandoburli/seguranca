@@ -1,0 +1,25 @@
+<form-pesquisa>
+	<filtros></filtros>
+	<tabela>
+        <table ng-table="tableParams" class="table table-hover table-striped table-advance col-md-12">
+            <tr ng-repeat="sessao in $data track by sessao.token">
+                <!-- Colunas -->
+                <td sortable="'sessao.token'" data-title="'Token'" class="col-sm-4">{{sessao.token}}</td>
+                <td sortable="'sessao.usuario.nome'" data-title="'Usuário'" class="col-sm-3">{{sessao.usuario.nome}}</td>
+                <td sortable="'sessao.usuario.perfil.nome'" data-title="'Perfil'" class="col-sm-2">{{sessao.usuario.perfil.nome}}</td>
+                <td sortable="'sessao.hostName'" data-title="'Host'" class="col-sm-2">{{sessao.hostName}}</td>
+                <td sortable="'sessao.address'" data-title="'Endereço'" class="col-sm-2">{{sessao.address}}</td>
+                <td sortable="'sessao.expired'" data-title="'Expirada'" class="col-sm-2">{{sessao.expired?"Sim":"Não"}}</td>
+                <td sortable="'sessao.creationTime'" data-title="'Entrou em'" class="col-sm-2">{{sessao.creationTime}}</td>
+                
+                <!-- Botoes -->
+                <td class="text-right form-group col-sm-1">
+                    <botao-excluir mini ng-click="matarSessao(sessao.token)"/>
+                </td>
+            </tr>
+        </table>
+    </tabela>
+    <botoes>
+    	<button type="button" class="btn btn-block blue-madison" ng-click="atualizar()"><i class="fa fa-history"></i> Atualizar</button>
+    </botoes>
+</form-pesquisa>

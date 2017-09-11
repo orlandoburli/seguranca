@@ -1,0 +1,9 @@
+<form-cadastro>
+    <campos>
+	    <input-cadastro class="col-md-6" label="Nome" placeholder="Nome do Usuário" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		<input-cadastro class="col-md-6" label="Login" placeholder="Login do Usuário" required field-model="vo.login" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		<input-cadastro class="col-md-12" label="Senha" placeholder="Senha do Usuário" required password field-model="vo.senha" ng-maxlength="100" ng-minlength="5" ng-disabled="!(isInclusao() || isAlteracao())"></input-cadastro>
+	    <select-cadastro class="col-md-6" label="Perfil" field-model="vo.perfil" ng-disabled="!(isInclusao() || isAlteracao())" values="perfis" empty="[Selecione um perfil]" my-options="perfil as perfil.nome for perfil in values track by perfil.id" required ></select-cadastro>
+	    <select-cadastro class="col-md-6" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+    </campos>
+</form-cadastro>

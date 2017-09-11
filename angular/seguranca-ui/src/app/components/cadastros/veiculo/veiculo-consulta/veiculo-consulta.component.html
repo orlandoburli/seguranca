@@ -1,0 +1,40 @@
+<panel>
+  <row>
+    <input-group width="6" label="Pesquisa de veículos" help="Pesquise por qualquer campo do veículo ou proprietário" [(ngModel)]="filtro.filtroGeral" (ngModelChange)="pesquisar()" id="filtroGeral"></input-group>
+
+    <col-sm-3>
+      <botao-pesquisar [marginTop]="25" (click)="pesquisar()"></botao-pesquisar>
+    </col-sm-3>
+
+    <col-sm-3>
+      <botao-limpar-pesquisa [marginTop]="25" (click)="limpar()"></botao-limpar-pesquisa>
+    </col-sm-3>
+  </row>
+
+  <row>
+    <col-sm-12>
+      <dt-data-table #dt [total]="dados?.total" [data]="dados?.lista" [paginated]="true" (onPaginate)="paginacao($event)" keyEvents="true">
+        <column width="6" field="morador.pessoa.nome" header="Nome da pessoa"></column>
+        <column width="2" field="placa" header="Placa"></column>
+        <column width="2" field="modelo" header="Modelo"></column>
+        <column width="1" field="cor" header="Cor"></column>
+        <column width="1" field="ano" header="Ano"></column>
+
+        <buttons-right>
+          <col-sm-4>
+            <botao-alterar [marginTop]="37" (click)="editar()"></botao-alterar>
+          </col-sm-4>
+
+          <col-sm-4>
+            <botao-excluir [marginTop]="37" (click)="excluir()"></botao-excluir>
+          </col-sm-4>
+
+          <col-sm-4>
+            <botao-novo [marginTop]="37" (click)="novo()"></botao-novo>
+          </col-sm-4>
+
+        </buttons-right>
+      </dt-data-table>
+    </col-sm-12>
+  </row>
+</panel>

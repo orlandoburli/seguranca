@@ -1,0 +1,39 @@
+<form-pesquisa>
+
+    <filtros>
+        <input-consulta class="form-group col-sm-6" label="Pesquisar pela placa, modelo ou marca do carro." placeholder="Digite um valor para pesquisar pela placa, modelo ou marca do carro." filter-model="filter.filtroGeral" filter-change="atualizar()"></input-consulta>
+
+        <select-consulta class="form-group col-sm-4 margem-componente" label="Status" filter-model="filter.ativo" filter-change="atualizar()" values="ativos" simple todos />
+
+        <div class="form-group col-sm-2 margem-componente margem-botao">
+            <botao-limpar ng-click="limpar()" full/>
+        </div>
+    </filtros>
+
+    <tabela>
+        <table ng-table="tableParams" class="table table-hover table-striped table-advance col-md-12">
+            <tr ng-repeat="vo in $data track by vo.id">
+                
+                <!-- Colunas -->
+                <td sortable="'placa'" data-title="'Placa'" class="col-sm-1">{{vo.placa}}</td>
+                <td sortable="'modelo'" data-title="'Modelo'" class="col-sm-1">{{vo.modelo}}</td>
+                <td sortable="'marca'" data-title="'Marca'" class="col-sm-1">{{vo.marca}}</td>
+                <td sortable="'cor'" data-title="'Cor'" class="col-sm-1">{{vo.cor}}</td>
+                <td sortable="'ano'" data-title="'Ano'" class="col-sm-1">{{vo.ano}}</td>
+                <td sortable="'morador.pessoa.nome'" data-title="'Morador'" class="col-sm-3">{{vo.morador.pessoa.nome}}</td>
+                <td sortable="'morador.unidade.numero'" data-title="'Unidade'" class="col-sm-1">{{vo.morador.unidade.numero}}</td>
+
+                <!-- Botoes -->
+                <td class="text-right form-group col-sm-2">
+                    <botao-alterar mini ng-click="alterar(vo.id)"/>
+                    <botao-excluir mini ng-click="excluir(vo.id)"/>
+                </td>
+            </tr>
+        </table>
+    </tabela>
+
+    <botoes>
+        <botao-novo ng-click="novo()"/>
+    </botoes>
+
+</form-pesquisa>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="pt-BR" data-ng-app="app">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <title data-ng-bind="'Innovare Security | ' + $state.current.data.pageTitle"></title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <base href="/" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="assets/global/plugins/icofont/css/icofont.css" rel="stylesheet" type="text/css" />
+
+        <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link id="ng_load_plugins_before" />
+        <link href="assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css" />
+        <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/layouts/layout4/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/global/plugins/ng-table/dist/ng-table.css" el="stylesheet" type="text/css" />
+        <link href="assets/pages/css/login-4.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+
+        <link rel="shortcut icon" href="favicon.ico" /> </head>
+
+    <body ng-controller="AppController" class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed-hide-logo page-on-load" ng-class="{'page-sidebar-closed': settings.layout.pageSidebarClosed}">
+        <div ng-spinner-bar class="page-spinner-bar" ng-show="!isLogin">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+        <div class="clearfix" ng-show="!isLogin"> </div>
+        <div class="page-container" style="margin-top: 0px;" >
+            <div data-ng-include="'tpl/sidebar.html'" data-ng-controller="SidebarController" class="page-sidebar-wrapper" ng-show="!isLogin"> </div>
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div data-ng-include="'tpl/page-head.html'" data-ng-controller="PageHeadController" class="page-head" ng-show="!isLogin"> </div>
+                    <div id="app" ui-view="" class="fade-in-up"> </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="page-quick-sidebar-toggler" ng-show="!isLogin">
+                <i class="icon-login"></i>
+            </a>
+            <div data-ng-include="'tpl/quick-sidebar.html'" data-ng-controller="QuickSidebarController" class="page-quick-sidebar-wrapper" ng-show="!isLogin"></div>
+        </div>
+        <div data-ng-include="'tpl/footer.html'" data-ng-controller="FooterController" class="page-footer" ng-show="!isLogin"> </div>
+        <!--[if lt IE 9]>
+        	<script src="assets/global/plugins/respond.min.js"></script>
+        	<script src="assets/global/plugins/excanvas.min.js"></script> 
+        <![endif]-->
+        <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+
+        <script src="assets/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angularjs/angular-cookies.min.js"></script>
+        <script src="assets/global/plugins/angular-resource/angular-resource.min.js"></script>
+        <script src="assets/global/plugins/angularjs/angular-sanitize.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angularjs/angular-touch.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/ng-table/dist/ng-table.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angularjs/plugins/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angularjs/plugins/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angular-md5/angular-md5.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angular-input-masks/angular-input-masks-dependencies.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angular-input-masks/angular-input-masks.br.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/angular-ui-select/select.js" type="text/javascript"></script>
+
+        <!-- Sweet Alert -->
+        <script src="assets/global/plugins/sweetalert/lib/sweet-alert.min.js"></script>
+        <!-- Angular Sweet Alert -->
+        <script src="assets/global/plugins/angular-sweetalert-promised/SweetAlert.min.js"></script>
+        <!-- Sweet Alert Css -->
+        <link rel="stylesheet" href="assets/global/plugins/sweetalert/lib/sweet-alert.css">
+        <link rel="stylesheet" href="assets/global/plugins/angular-ui-select/select.css">
+
+        <!-- END CORE ANGULARJS PLUGINS -->
+        <!-- BEGIN APP LEVEL ANGULARJS SCRIPTS -->
+        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/directives.js" type="text/javascript"></script>
+        <script src="js/utils.js" type="text/javascript"></script>
+        <!-- END APP LEVEL ANGULARJS SCRIPTS -->
+        
+        <!-- BEGIN APP LEVEL JQUERY SCRIPTS -->
+        <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+        <!-- <script src="assets/pages/scripts/login-4.js" type="text/javascript"></script> -->
+
+        <!-- END APP LEVEL JQUERY SCRIPTS -->
+
+        <!-- Controller's -->
+        <script src="js/controllers/geral/GenericController.js" type="text/javascript"></script>
+        <script src="js/controllers/acesso/PerfilController.js" type="text/javascript"></script>
+        <script src="js/controllers/acesso/UsuarioController.js" type="text/javascript"></script>
+        <script src="js/controllers/tabelasbasicas/PortaController.js" type="text/javascript"></script>
+        <script src="js/controllers/tabelasbasicas/AreaComumController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/TorreController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/BlocoController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/UnidadeController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/TipoPessoaController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/PessoaController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/MoradorController.js" type="text/javascript"></script>
+        <script src="js/controllers/cadastros/VeiculoController.js" type="text/javascript"></script>
+        <script src="js/controllers/geral/SideBarController.js" type="text/javascript"></script>
+        <script src="js/controllers/geral/LoginController.js" type="text/javascript"></script>
+        <script src="js/controllers/portaria/LiberacaoController.js" type="text/javascript"></script>
+        <script src="js/controllers/suporte/UsuariosLogadosController.js" type="text/javascript"></script>
+        <!-- Fim Controller's -->
+
+        <!-- Services -->
+        <script src="js/services/acesso/PerfilService.js" type="text/javascript"></script>
+        <script src="js/services/geral/CadastroService.js" type="text/javascript"></script>
+        <script src="js/services/geral/ConsultaService.js" type="text/javascript"></script>
+        <script src="js/services/geral/MensagemService.js" type="text/javascript"></script>
+        <script src="js/services/geral/LoginService.js" type="text/javascript"></script>
+        <script src="js/services/geral/AcessoService.js" type="text/javascript"></script>
+        <script src="js/services/geral/SessionInjector.js" type="text/javascript"></script>
+        <script src="js/services/cadastros/UnidadeService.js" type="text/javascript"></script>
+        <script src="js/services/tabelasbasicas/EstadoService.js" type="text/javascript"></script>
+        <script src="js/services/tabelasbasicas/CepService.js" type="text/javascript"></script>
+        <script src="js/services/suporte/SuporteService.js" type="text/javascript"></script>
+        
+        <!-- Fim Services -->
+
+        <!-- Provider's -->
+        <script src="js/providers/ParametrosApp.js" type="text/javascript"></script>
+        <script src="js/providers/MenuProvider.js" type="text/javascript"></script>
+        <!-- Fim Provider's -->
+
+        <!-- Directive's -->
+        <script src="js/directives/ButtonsDirectives.js" type="text/javascript"></script>
+        <script src="js/directives/FormDirectives.js" type="text/javascript"></script>
+        <script src="js/directives/InputDirectives.js" type="text/javascript"></script>
+        <script src="js/directives/webcam.js" type="text/javascript"></script>
+        <!-- Fim Directive's -->
+
+        <!-- END JAVASCRIPTS -->
+    </body>
+    <!-- END BODY -->
+
+</html>

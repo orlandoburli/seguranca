@@ -1,0 +1,15 @@
+<div class="col-sm-{{ width }}">
+  <div class="form-group">
+    <label for="internal_{{ componentId }}">{{ label }}</label>
+
+    <select class="form-control" id="internal_{{ componentId }}" [disabled]="disabled">
+      <option *ngFor="let item of options" value="{{ item.value }}">{{ item.label }}</option>
+    </select>
+
+    <!--<select2 class="form-control" id="internal_{{ componentId }}" [(ngModel)]="value" [disabled]="disabled" [data]="getData()">
+      <option *ngFor="let item of options" value="{{ item.value }}">{{ item.label }}</option>
+    </select2>-->
+
+    <!--<span class="help-block">{{ help }}</span>-->
+  </div>
+</div>

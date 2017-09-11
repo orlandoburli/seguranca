@@ -1,0 +1,18 @@
+<form-cadastro>
+    <campos>
+		<select-cadastro class="col-md-6" label="Torre" field-model="vo.torre" required values="torres" my-options="torre as torre.nome for torre in values track by torre.id">
+		</select-cadastro>
+
+		<select-cadastro class="col-md-6" label="Bloco" field-model="vo.bloco" required values="blocos" my-options="bloco as bloco.nome for bloco in values track by bloco.id"></select-cadastro>
+
+		<input-cadastro class="col-md-4" label="Unidades por andar" field-model="vo.torre.unidadesPorAndar" ng-disabled="true"></input-cadastro>
+		<input-cadastro class="col-md-4" label="Andares" field-model="vo.torre.andares" ng-disabled="true"></input-cadastro>
+		<input-cadastro class="col-md-4" label="Térreo" field-model="vo.torre.terreo" ng-disabled="true"></input-cadastro>
+    </campos>
+
+    <botoes>
+    	<botao-salvar></botao-salvar>
+    	<botao-limpar ng-click="limpar(formulario)"></botao-limpar>
+    	<botao-voltar ng-click="voltar()"></botao-voltar>
+    </botoes>
+</form-cadastro>

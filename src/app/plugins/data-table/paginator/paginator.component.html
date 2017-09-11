@@ -1,0 +1,27 @@
+<ul class="pagination">
+  <li>
+    <a href="javascript:void(0);" (click)="first()">
+      <i class="fa fa-angle-double-left"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" (click)="previous()">
+      <i class="fa fa-angle-left"></i>
+    </a>
+  </li>
+
+  <li *ngFor="let i of itens" [ngClass]="{'active' : current == i}">
+    <a href="javascript:void(0);" (click)="setCurrent(i)"> {{ i }}</a>
+  </li>
+
+  <li>
+    <a href="javascript:void(0);" (click)="next()">
+      <i class="fa fa-angle-right"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" (click)="last()">
+      <i class="fa fa-angle-double-right"></i>
+    </a>
+  </li>
+</ul>

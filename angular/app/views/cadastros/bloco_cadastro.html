@@ -1,0 +1,6 @@
+<form-cadastro>
+    <campos>
+	    <input-cadastro class="col-md-12" label="Nome" placeholder="Nome do Bloco" required field-model="vo.nome" ng-disabled="!(isInclusao() || isAlteracao())" ng-maxlength="100"></input-cadastro>
+		<select-cadastro class="col-md-12" label="Ativo" field-model="vo.ativo" ng-disabled="!(isInclusao() || isAlteracao())" required simple values="ativos"></select-cadastro>
+    </campos>
+</form-cadastro>

@@ -1,0 +1,26 @@
+echo "Modulo ........: $1"
+echo "Funcionalidade : $2"
+
+export HELP="/?"
+
+if [ "$1" == "$HELP" ]; then
+  exit 0
+fi
+
+echo "Criando modulo $2..."
+ng g m components/$1/$2 --routing
+
+echo "Criando componente $1..."
+ng g c components/$1/$2
+
+echo "Criando componente cadastro de $2..."
+ng g c components/$1/$2/$2-cadastro
+
+echo "Criando componente consulta de $2..."
+ng g c components/$1/$2/$2-consulta
+
+echo "Criando service de $2..."
+ng g s components/$1/$2/$2
+
+echo "Criando model de $2..."
+ng g class components/$1/$2/$2.model

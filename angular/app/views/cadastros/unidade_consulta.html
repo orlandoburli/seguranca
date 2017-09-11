@@ -1,0 +1,42 @@
+<form-pesquisa>
+
+    <filtros>
+        
+        <input-consulta class="form-group col-sm-3" label="Número" placeholder="Pesquisar por número" filter-model="filter.numero" filter-change="atualizar()"></input-consulta>
+
+        <select-consulta class="form-group col-sm-2 margem-componente" label="Status" filter-model="filter.ativo" filter-change="atualizar()" values="ativos" simple todos />
+
+        <select-consulta class="form-group col-sm-2 margem-componente" label="Bloco" filter-model="filter.bloco$id" filter-change="atualizar()" values="blocos" todos />
+
+        <select-consulta class="form-group col-sm-2 margem-componente" label="Torre" filter-model="filter.torre$id" filter-change="atualizar()" values="torres" todos />
+
+        <div class="form-group col-sm-2 margem-componente margem-botao">
+            <botao-limpar ng-click="limpar()" full/>
+        </div>
+
+    </filtros>
+
+    <tabela>
+        <table ng-table="tableParams" class="table table-hover table-striped table-condensed table-bordered">
+            <tr ng-repeat="vo in $data track by vo.id">
+                <!-- Colunas -->
+                <td sortable="'numero'" data-title="'Número'" class="col-sm-2">{{vo.numero}}</td>
+                <td sortable="'torre.nome'" data-title="'Torre'" class="col-sm-2">{{vo.torre.nome}}</td>
+                <td sortable="'bloco.nome'" data-title="'Bloco'" class="col-sm-2">{{vo.bloco.nome}}</td>
+                <td sortable="'ativo'" data-title="'Status'" class="col-sm-2">{{vo.ativo}}</td>
+
+                <!-- Botoes -->
+                <td class="text-right form-group col-sm-2">
+                    <botao-alterar ng-click="alterar(vo.id)" mini/>
+                    <botao-excluir ng-click="excluir(vo.id)" mini/>
+                </td>
+            </tr>
+        </table>
+    </tabela>
+
+    <botoes>
+        <botao-novo ng-click="novo()"/>
+        <button type="button" class="btn blue-ebonyclay" ng-click="multiplos()"><i class="fa fa-plus-square"></i> Cadastrar múltiplos</button>
+    </botoes>
+
+</form-pesquisa>
