@@ -1,0 +1,13 @@
+<div class="col-sm-{{ width }}">
+  <div class="form-group">
+    <label for="internal_{{ componentId }} ">{{ label }}</label>
+
+    <ng-template [ngIf]="getMask()">
+      <input [textMask]="{ mask: getMask(), keepCharPositions : true, pipe : getPipe() }" [type]="getInputType()" class="form-control" id="internal_{{ componentId }}" [(ngModel)]="value" (blur)="onBlur()" (ngModelChange)="changeModel()" [disabled]="disabled" [autofocus]="autoFocus" />
+    </ng-template>
+
+    <ng-template [ngIf]="!getMask()">
+      <input [type]="getInputType()" class="form-control" id="internal_{{ componentId }}" name="internal_{{ componentId }}" [(ngModel)]="value" (blur)="onBlur()" (ngModelChange)="changeModel()" [disabled]="disabled" [autofocus]="autoFocus" placeholder="{{help}}" [ngModelOptions]="{standalone: true}" />
+    </ng-template>
+  </div>
+</div>
